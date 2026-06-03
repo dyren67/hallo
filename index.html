@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendy - Personal Website</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Card Container */
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Avatar Placeholder */
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: #e9ecef;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #a0aec0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: #1a1a1a;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 15px;
+            color: #4a5568;
+            min-height: 120px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Info List */
+        .info-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #edf2f7;
+            padding-bottom: 8px;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #718096;
+        }
+
+        .info-value {
+            color: #1a1a1a;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="avatar">R</div>
+        
+        <h1>Rendy</h1>
+        <p class="subtitle">Personal Profile</p>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('tentang')">Tentang</button>
+            <button class="tab-btn" onclick="switchTab('biodata')">Biodata</button>
+            <button class="tab-btn" onclick="switchTab('kontak')">Kontak</button>
+        </div>
+
+        <div id="tentang" class="content-section active">
+            <p>Halo, saya Rendy. Saat ini saya berdomisili di Sukabumi. Halaman ini dibuat sebagai ruang personal sederhana untuk memperkenalkan diri secara ringkas dan fungsional.</p>
+        </div>
+
+        <div id="biodata" class="content-section">
+            <div class="info-item">
+                <span class="info-label">Nama Lengkap</span>
+                <span class="info-value">Rendy</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Tanggal Lahir</span>
+                <span class="info-value">26 November 2008</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Asal Kota</span>
+                <span class="info-value">Sukabumi</span>
+            </div>
+        </div>
+
+        <div id="kontak" class="content-section">
+            <p>Jika ingin berdiskusi atau menyapa, Anda bisa menghubungi saya melalui email atau media sosial berikut:</p>
+            <div class="info-item" style="margin-top: 15px;">
+                <span class="info-label">Email</span>
+                <span class="info-value">rendy@example.com</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Rendy. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Sembunyikan semua section
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Matikan semua tombol aktif
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Tampilkan section yang dipilih
+            document.getElementById(tabId).classList.add('active');
+
+            // Aktifkan tombol yang diklik
+            const clickedButton = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
